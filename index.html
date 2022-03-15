@@ -3,10 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="styles.css" rel="stylesheet">
-    <title>?</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>选择你的首发</title>
 </head>
 <body>
-    <img src="s.gif">
+    
+    <div id="root">
+        <div id="left">
+            <h2>选择你的首发</h2>
+            <input type="button" value="全选" class="button1" @click = "allc">
+            <input type="button" value="全不选" class="button1" @click = "allnc">
+            <input type="button" value="就决定是你了" @click = "choice" class="button2">
+                <ul>
+                    <li v-for="(item,index) of zhineng" :key="index">
+                        {{item.name}}
+                        <br>
+                        <label v-for="(zhiye,index) of item.zhiye"><input type="checkbox" :value = "zhiye" class="check">{{zhiye}}</label>
+                    </li>
+                </ul>       
+        </div>
+        <div id="right">
+            {{choiced}}
+        </div>
+
+    </div>
+    
+    <script type="text/javascript" src="../../js/vue.js"></script>
+    <script type="text/javascript">
+        Vue.config.productionTip = false //阻止 vue 在启动时生成生产提示。
+        var vm = new Vue({
+        el:'#root',
+        data:{
+            zhineng:[{
+                name:"近战",
+                zhiye:["龙骑","武士","武僧","忍者","镰刀"],
+            },
+           {
+                name:"法系",
+                zhiye:["赤魔","召唤","黑魔"]
+            },
+           {
+                name:"远敏",
+                zhiye:["舞者","机工","诗人"]
+            },
+            {
+                name:"奶妈",
+                zhiye:["贤者",'学者','白魔','占星']
+            },
+            {
+                name:"坦克",
+                zhiye:['骑士','战士','绝枪','黑骑']
+            },],
+            choiced: "",
+        },
+        methods:{
+            choice(){
+                let inputs = document.getElementsByClassName("check");
+                var arr = [];
+                for(let i = 0;i<inputs.length;i++){
+                    if(inputs[i].checked == true){
+                        arr.push(inputs[i].value);
+                        // console.log(inputs[i].value);
+                        
+                    }
+                }
+                // console.log(arr);
+                if(!arr.length){
+                    alert("您啥也不选是准备用生产上月球吗?")
+                }else if(arr.length == 1){
+                    this.choiced = arr[0],
+                        alert("上头已经钦定了,由"+arr[0]+"来首发6.0")
+                }else{
+                    let zhiye = arr[Math.floor(Math.random()*arr.length)];
+                    console.log(arr);
+                    this.choiced = zhiye;
+                    alert("上头已经决定了,由"+zhiye+"来首发6.0");
+                }
+                console.log(choiced);
+            },
+            allc(){
+                let inputs = document.getElementsByClassName("check");
+                for(let i = 0;i<inputs.length;i++){
+                    inputs[i].checked = true;
+                     
+                }
+            },
+            allnc(){
+                let inputs = document.getElementsByClassName("check");
+                for(let i = 0;i<inputs.length;i++){
+                    inputs[i].checked = false;
+                     
+                }
+            }
+        },
+        })
+    </script>
+
 </body>
 </html>

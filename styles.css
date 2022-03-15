@@ -1,7 +1,44 @@
-img{
-    width: 300px;
+ul{
+    list-style-type: none;
+}
+li{
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+input{
+    margin-top: 20px;
+    margin-left: 15px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+#root{
     margin: 0 auto;
+    width: 1000px;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
+    
+    /* text-align: center; */
+}
+.button2{
+    margin-right: 200px;
+    font-size: 30px;
+}
+#left{
+    float: left;
+    width: 50%;
+}
+#right{
+    float: left;
+    padding-top: 200px;;
+    width: 50%;
+    font-size: 200px;
+    text-align: center;
+    line-height: auto;
+    
 }
 body{
-    text-align: center;
+    background: url("./ffxiv_6.0patch_01_2048x1536.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+    /* background-size:120% 120% ; */
 }
